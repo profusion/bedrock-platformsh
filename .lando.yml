@@ -1,0 +1,5 @@
+name: test-project
+recipe: platformsh
+config:
+  id: 6fqjksw3vtc3k
+  webroot: .
