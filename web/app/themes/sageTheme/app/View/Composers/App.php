@@ -3,6 +3,7 @@
 namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
+use Illuminate\Support\Facades\Http;
 
 class App extends Composer
 {
@@ -24,6 +25,7 @@ class App extends Composer
     {
         return [
             'siteName' => $this->siteName(),
+            'getJson' => $this->getJson()
         ];
     }
 
@@ -36,4 +38,26 @@ class App extends Composer
     {
         return get_bloginfo('name', 'display');
     }
+
+    /**
+     * Returns the site name.
+     *
+     * @return string
+     */
+    public function siteName2()
+    {
+        return get_bloginfo('name', 'display');
+    }
+
+    /**
+     * @return string
+     */
+    public function getJson() {
+
+        $response = Http::get('https://my-json-server.typicode.com/typicode/demo/posts');
+        $body = $response -> body();
+
+        return $body;
+    }
+
 }
